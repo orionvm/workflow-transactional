@@ -306,6 +306,26 @@ Integration with Mongoid
 You can integrate with Mongoid following the example above for CouchDB, but there is a gem that does that for you (and includes extensive tests):
 [workflow_on_mongoid](http://github.com/bowsersenior/workflow_on_mongoid)
 
+
+Custom Versions of Existing Adapters
+------------------------------------
+
+Other adapters (such as a custom ActiveRecord plugin) can be selected by adding a `workflow_adapter` class method, eg.
+
+```ruby
+class Example < ActiveRecord::Base
+  def self.workflow_adapter
+    MyCustomAdapter
+  end
+  include Workflow
+
+  # ...
+end
+```
+
+(The above will include `MyCustomAdapter` *instead* of `Workflow::Adapter::ActiveRecord`.)
+
+
 Accessing your workflow specification
 -------------------------------------
 
